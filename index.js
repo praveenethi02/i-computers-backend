@@ -1,9 +1,49 @@
 import express from 'express'
 
-let app = express()
+const app = express()
 
-function go(){
-    console.log("Server is running")
-}
+app.use(express.json())
 
-app.listen(3000, go)
+app.get( "/",
+    (req, res)=>{
+        console.log("Get request received")
+        console.log(req.body)
+        res.json({
+            message : "Good morning"+ req.body.name
+        })
+    }
+)
+
+app.get("/about",
+    (req, res)=>{
+        console.log("About request received")
+        console.log(req.body)
+    }
+)
+
+app.post("/",
+    (req, res)=>{
+        console.log("Post request received")
+        console.log(req.body)
+    }
+)
+
+app.delete("/",
+    (req, res)=>{
+        console.log("Delete request received")
+        console.log(req.body)
+    }
+)
+
+app.put("/",
+    (req, res)=>{
+        console.log("Put request received")
+        console.log(req.body)
+    }
+)
+
+app.listen(3000, 
+    ()=>{
+        console.log("server is running!")
+    }
+)
