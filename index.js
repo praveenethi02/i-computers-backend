@@ -42,7 +42,6 @@ dns.setServers(["1.1.1.1", "8.8.8.8"]);
 
 import express from 'express';
 import mongoose from 'mongoose';
-import studentRouter from './routes/studentRouter.js';
 import userRouter from './routes/userRouter.js';
 import authenticate from './middlewares/authenticates.js';
 import productRouter from './routes/productRouter.js';
@@ -61,7 +60,6 @@ const app = express();
 app.use(express.json());
 app.use(authenticate);
 
-app.use("/students", studentRouter);
 app.use("/users", userRouter);
 app.use("/products", productRouter);
 
