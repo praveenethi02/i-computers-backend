@@ -45,17 +45,22 @@ import mongoose from 'mongoose';
 import userRouter from './routes/userRouter.js';
 import authenticate from './middlewares/authenticates.js';
 import productRouter from './routes/productRouter.js';
+import cors from 'cors';
+import dotenv from 'dotenv';
+dotenv.config();
 
-const mongoUri = "mongodb+srv://admin:ptb1234@cluster0.kgyezxs.mongodb.net/?appName=Cluster0";
+const mongoUri = process.env.MONGO_URI;
 
 mongoose.connect(mongoUri).then(() => {
-    console.log("Connected to mongoDB");
+    console.log("Connected to mongoDB Successfully!");
     
 }).catch((err) => {
     console.error("MongoDB connection error:", err);
 });
 
 const app = express();
+
+app.use(cors());    
 
 app.use(express.json());
 app.use(authenticate);

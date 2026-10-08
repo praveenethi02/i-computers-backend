@@ -3,3 +3,4 @@ settings.json
 resources.yaml
 .package-lock.json
 workspace.globals.yaml
+.env
