@@ -1,8 +1,10 @@
 import User from '../models/user.js';
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
+import dotenv from 'dotenv'
+dotenv.config()
 
-const JWT_SECRET = 'comp99012@';
+const JWT_SECRET = process.env.JWT_SECRET;
 
 export async function createUser(req, res){
     try{
@@ -66,7 +68,7 @@ export async function loginUser(req, res){
 
             const token = jwt.sign(userInfo, JWT_SECRET)
 
-            res.json({ token })
+            res.json({ token : token, isAdmin : user.isAdmin });
 
         }
         else{
